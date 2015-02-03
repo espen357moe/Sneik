@@ -12,9 +12,18 @@ namespace Sneik
 {
     public partial class Form1 : Form
     {
+
+        ArrayList bodySegments;
+        Point treasure;
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
