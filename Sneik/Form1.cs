@@ -17,7 +17,7 @@ namespace Sneik
         ArrayList bodySegments;
         Point treasure;
         Char direction = 'L';
-        Random r;
+        Random r = new Random(Guid.NewGuid().GetHashCode());
         int score;
         Font fnt;
 
@@ -71,7 +71,7 @@ namespace Sneik
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Point p = (Point)points[0];
+            Point p = (Point)bodySegments[0];
             //mer her
         }
     }
