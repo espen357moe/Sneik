@@ -16,15 +16,12 @@ namespace Sneik
         
         ArrayList bodySegments;
         Point treasure;
-        Char direction = "L";
+        Char direction = 'L';
         Random r;
         int score;
         Font fnt;
 
-        private Color GetRandomColor()
-        {
-            return Color.FromArgb(r.Next(0, 255), r.Next(0,255),r.Next(0,255));
-        }
+        
 
         public Form1()
         {
@@ -43,7 +40,7 @@ namespace Sneik
             r = new Random();
             fnt = new Font("Verdana", 12, FontStyle.Bold);
             treasure.X = r.Next(0, 39);
-            treasure.Y = r.next(0, 19);
+            treasure.Y = r.Next(0, 19);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -53,6 +50,29 @@ namespace Sneik
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             configuration();
 
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+
+            Graphics g;
+            g = e.Graphics;
+            SolidBrush b = new SolidBrush(Color.Green);
+            for (int i = 0; i < bodySegments.Count; i++)
+            {
+                Point bodySegment = (Point)bodySegments[i];
+                g.FillEllipse(b, bodySegment.X * 10, bodySegment.Y * 10, 10, 10);
+            }
+            b.Color = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
+            g.FillRectangle(b, treasure.X * 10, treasure.Y * 10, 10, 10);
+            b.Color = Color.DarkGray;
+            g.DrawString(score.ToString(), fnt, b, 10, 10);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Point p = (Point)points[0];
+            //mer her
         }
     }
 }
