@@ -12,16 +12,13 @@ using System.Windows.Forms;
 namespace Sneik
 {
     public partial class Form1 : Form
-    {
-        
+    {      
         ArrayList bodySegments;
         Point treasure;
         Char direction = 'L';
         Random r = new Random(Guid.NewGuid().GetHashCode());
         int score;
         Font fnt;
-
-        
 
         public Form1()
         {
@@ -49,12 +46,10 @@ namespace Sneik
             this.ClientSize = s;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             configuration();
-
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-
             Graphics g;
             g = e.Graphics;
             SolidBrush b = new SolidBrush(Color.Green);
