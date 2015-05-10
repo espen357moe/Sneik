@@ -19,6 +19,7 @@ namespace Sneik
         Random r = new Random(Guid.NewGuid().GetHashCode());
         int score;
         Font fnt;
+        HitDetection hd = new HitDetection();
 
         public Form1()
         {
@@ -41,6 +42,7 @@ namespace Sneik
             
             treasure.X = r.Next(0, 39);
             treasure.Y = r.Next(0, 19);
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -48,7 +50,7 @@ namespace Sneik
             Size s = new System.Drawing.Size(400, 200);
             this.ClientSize = s;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            configuration();
+            configuration();           
             timer1.Enabled = true;
         }
 
@@ -61,7 +63,7 @@ namespace Sneik
             for (int i = 0; i < bodySegments.Count; i++)
             {
                 Point bodySegment = (Point)bodySegments[i];
-                g.FillEllipse(b, bodySegment.X * 10, bodySegment.Y * 10, 10, 10);
+                g.FillEllipse(b, bodySegment.X * 10, bodySegment.Y * 10, 10, 10);                
             }
             
             b.Color = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
@@ -84,8 +86,22 @@ namespace Sneik
                 case 'D' : bodySegments.Insert(0, new Point(p.X, p.Y + 1));
                     break;
             }
-
+            
             bodySegments.RemoveAt(bodySegments.Count - 1);
+            
+            bool hit = hd.DetectHit((Point) bodySegments[0], treasure);
+            
+            if (hit)
+            {
+                Console.WriteLine("Hit detected");
+                score += 1;
+                bodySegments.Add(new Point());
+                
+                treasure.X = r.Next(0, 39);
+                treasure.Y = r.Next(0, 19);
+            }
+            
+            
             this.Refresh();
         }
 
