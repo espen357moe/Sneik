@@ -99,9 +99,7 @@ namespace Sneik
                 
                 treasure.X = r.Next(0, 39);
                 treasure.Y = r.Next(0, 19);
-            }
-            
-            
+            }                      
             this.Refresh();
         }
 
